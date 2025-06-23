@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calendar Widget - Modern Event Calendar Component</title>
+    <meta name="description" content="A modern, interactive calendar widget with drag & drop events, multiple views, and local storage. Perfect for websites and web applications.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="calendar-header">
+            <div class="header-controls">
+                <button class="btn btn-icon" id="prevMonth">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <h1 class="current-month" id="currentMonth">December 2024</h1>
+                <button class="btn btn-icon" id="nextMonth">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="view-controls">
+                <button class="btn btn-view active" data-view="month">Month</button>
+                <button class="btn btn-view" data-view="week">Week</button>
+                <button class="btn btn-view" data-view="day">Day</button>
+            </div>
+        </header>
+
+        <!-- Calendar Grid -->
+        <div class="calendar-container">
+            <!-- Month View -->
+            <div class="calendar-view month-view active" id="monthView">
+                <div class="calendar-weekdays">
+                    <div class="weekday">Sun</div>
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                </div>
+                <div class="calendar-grid" id="monthGrid">
+                    <!-- Days will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Week View -->
+            <div class="calendar-view week-view" id="weekView">
+                <div class="week-header">
+                    <div class="time-column">Time</div>
+                    <div class="day-column" data-day="0">Sun</div>
+                    <div class="day-column" data-day="1">Mon</div>
+                    <div class="day-column" data-day="2">Tue</div>
+                    <div class="day-column" data-day="3">Wed</div>
+                    <div class="day-column" data-day="4">Thu</div>
+                    <div class="day-column" data-day="5">Fri</div>
+                    <div class="day-column" data-day="6">Sat</div>
+                </div>
+                <div class="week-grid" id="weekGrid">
+                    <!-- Time slots will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Day View -->
+            <div class="calendar-view day-view" id="dayView">
+                <div class="day-timeline" id="dayTimeline">
+                    <!-- Time slots will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Panel -->
+        <div class="event-panel" id="eventPanel">
+            <div class="panel-header">
+                <h3>Events</h3>
+                <button class="btn btn-primary" id="addEventBtn">
+                    <i class="fas fa-plus"></i> Add Event
+                </button>
+            </div>
+            <div class="events-list" id="eventsList">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Event Modal -->
+        <div class="modal" id="eventModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Add New Event</h3>
+                    <button class="modal-close" id="closeModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="eventForm">
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title</label>
+                        <input type="text" id="eventTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Date</label>
+                        <input type="date" id="eventDate" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventStart">Start Time</label>
+                            <input type="time" id="eventStart" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventEnd">End Time</label>
+                            <input type="time" id="eventEnd" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDescription">Description</label>
+                        <textarea id="eventDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventColor">Color</label>
+                        <div class="color-picker">
+                            <input type="radio" name="eventColor" value="#667eea" id="color1" checked>
+                            <label for="color1" class="color-option" style="background: #667eea;"></label>
+                            
+                            <input type="radio" name="eventColor" value="#10b981" id="color2">
+                            <label for="color2" class="color-option" style="background: #10b981;"></label>
+                            
+                            <input type="radio" name="eventColor" value="#f59e0b" id="color3">
+                            <label for="color3" class="color-option" style="background: #f59e0b;"></label>
+                            
+                            <input type="radio" name="eventColor" value="#ef4444" id="color4">
+                            <label for="color4" class="color-option" style="background: #ef4444;"></label>
+                            
+                            <input type="radio" name="eventColor" value="#8b5cf6" id="color5">
+                            <label for="color5" class="color-option" style="background: #8b5cf6;"></label>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="deleteEvent" style="display: none;">Delete</button>
+                        <button type="submit" class="btn btn-primary">Save Event</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Created by <a href="https://harmoncode.com" target="_blank">Harmon Code</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

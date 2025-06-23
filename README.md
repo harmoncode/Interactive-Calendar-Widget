@@ -15,7 +15,7 @@ A modern, interactive calendar widget with drag & drop events, multiple views, a
 
 ## 🚀 Live Demo
 
-[View on CodePen](https://codepen.io/harmoncode/pen/your-pen-id)
+[View on CodePen](https://codepen.io/harmoncode/pen/zxGMLrK)
 
 ## 📁 Files
 
